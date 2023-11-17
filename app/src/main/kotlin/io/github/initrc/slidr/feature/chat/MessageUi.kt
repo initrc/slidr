@@ -31,15 +31,21 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import io.github.initrc.slidr.R
 import io.github.initrc.slidr.ui.theme.SlidrTheme
+import kotlin.random.Random
 
 
-data class Message(val body: String, val isFromMe: Boolean, val isLoading: Boolean = false)
+data class Message(
+    val body: String,
+    val isFromMe: Boolean,
+    val id: String = Random.nextInt(0, 1_000_000).toString(),
+    val isLoading: Boolean = false
+)
 
 @Composable
-fun MessageCard(message: Message) {
+fun MessageCard(message: Message, modifier: Modifier) {
     Row(
         horizontalArrangement = if (message.isFromMe) Arrangement.End else Arrangement.Start,
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .padding(all = 8.dp)
     ) {
@@ -109,7 +115,8 @@ fun MessageCard(message: Message) {
 fun PreviewMessageCard() = SlidrTheme {
     Surface {
         MessageCard(
-            message = Message("Sunny", false)
+            message = Message("Sunny", false),
+            Modifier
         )
     }
 }

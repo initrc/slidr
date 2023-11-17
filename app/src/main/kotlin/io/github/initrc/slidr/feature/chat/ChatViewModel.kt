@@ -1,6 +1,5 @@
 package io.github.initrc.slidr.feature.chat
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -18,7 +17,6 @@ class ChatViewModel: ViewModel() {
     private val chatRepository = ChatRepository()
 
     fun onSendClick(text: String) {
-        Log.e("david", "onSendClicked: $text")
         appendMessage(listOf(Message(text, true)))
         viewModelScope.launch {
             val messagesFromBot = sendText(text)

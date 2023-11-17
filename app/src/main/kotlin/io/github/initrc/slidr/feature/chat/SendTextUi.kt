@@ -43,7 +43,6 @@ fun SendText(
             .padding(8.dp)
     ) {
         var text by rememberSaveable { mutableStateOf("") }
-        val keyboardController = LocalSoftwareKeyboardController.current
         OutlinedTextField(
             value = text,
             onValueChange = { text = it},
@@ -51,7 +50,6 @@ fun SendText(
             maxLines = 1,
             keyboardActions = KeyboardActions(
                 onSend = {
-                    keyboardController?.hide()
                     onSendClick(text)
                     text = ""
                 }
@@ -66,7 +64,6 @@ fun SendText(
 
         IconButton(
             onClick = {
-                keyboardController?.hide()
                 onSendClick(text)
                 text = ""
             },

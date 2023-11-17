@@ -8,6 +8,7 @@ import retrofit2.http.Query
 
 class ChatRepository() {
 
+    // https://documenter.getpostman.com/view/8854915/Szf7znEe#068625c4-95f6-4e06-afb3-7ca055e72eb0
     private val retrofit = Retrofit.Builder()
         .baseUrl("http://universities.hipolabs.com/")
         .addConverterFactory(GsonConverterFactory.create())
