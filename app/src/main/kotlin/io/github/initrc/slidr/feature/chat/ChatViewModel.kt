@@ -5,33 +5,40 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.delay
+import io.github.initrc.slidr.feature.chat.data.ChatRepository
 import kotlinx.coroutines.launch
 
 class ChatViewModel: ViewModel() {
 
-    private val welcomeMessage = Message("Hi, ask me about schools.", false)
+    private val welcomeMessage = Message("Hi, ask me about universities.", false)
     private val _messages = MutableLiveData(listOf(welcomeMessage))
     val messages: LiveData<List<Message>>
         get() = _messages
 
+    private val chatRepository = ChatRepository()
+
     fun onSendClick(text: String) {
         Log.e("david", "onSendClicked: $text")
-        appendMessage(Message(text, true))
+        appendMessage(listOf(Message(text, true)))
         viewModelScope.launch {
-            val textFromBot = sendText(text)
-            appendMessage(Message(textFromBot, false))
+            val messagesFromBot = sendText(text)
+            appendMessage(messagesFromBot)
         }
     }
 
-    private fun appendMessage(message: Message) {
+    private fun appendMessage(messages: List<Message>) {
         val newMessages = _messages.value?.toMutableList() ?: mutableListOf()
-        newMessages.add(message)
+        newMessages.addAll(messages)
         _messages.value = newMessages
     }
 
-    private suspend fun sendText(text: String): String {
-        delay(1000)
-        return "$text $text"
+    private suspend fun sendText(text: String): List<Message> {
+        return chatRepository.searchUniversities(text).map { university ->
+            val websites = university.webPages.joinToString("\n")
+            Message(
+                "${university.name}\nCountry: ${university.country}\n$websites",
+                false
+            )
+        }
     }
 }

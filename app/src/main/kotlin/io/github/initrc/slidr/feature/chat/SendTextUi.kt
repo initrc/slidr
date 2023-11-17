@@ -53,6 +53,7 @@ fun SendText(
                 onSend = {
                     keyboardController?.hide()
                     onSendClick(text)
+                    text = ""
                 }
             ),
             keyboardOptions = KeyboardOptions.Default.copy(
@@ -67,6 +68,7 @@ fun SendText(
             onClick = {
                 keyboardController?.hide()
                 onSendClick(text)
+                text = ""
             },
             colors = IconButtonDefaults.outlinedIconButtonColors(),
             modifier = Modifier
