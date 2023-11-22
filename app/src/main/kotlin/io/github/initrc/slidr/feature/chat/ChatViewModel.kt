@@ -10,14 +10,14 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class ChatViewModel @Inject constructor(): ViewModel() {
+class ChatViewModel @Inject constructor(
+    val chatRepository: ChatRepository,
+): ViewModel() {
 
     private val welcomeMessage = Message("Hi, ask me about universities.", false)
     private val _messages = MutableLiveData(listOf(welcomeMessage))
     val messages: LiveData<List<Message>>
         get() = _messages
-
-    private val chatRepository = ChatRepository()
 
     fun onSendClick(text: String) {
         appendMessage(listOf(Message(text, true)))
