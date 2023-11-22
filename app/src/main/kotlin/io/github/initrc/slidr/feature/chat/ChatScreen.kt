@@ -10,7 +10,7 @@ import androidx.compose.ui.Modifier
 
 @Composable
 fun ChatScreen(
-    chatViewModel: ChatViewModel = ChatViewModel()
+    chatViewModel: ChatViewModel,
 ) {
     val messages = chatViewModel.messages.observeAsState(listOf())
     Surface {
