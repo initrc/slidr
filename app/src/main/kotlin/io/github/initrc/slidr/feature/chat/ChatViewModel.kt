@@ -18,7 +18,8 @@ class ChatViewModel @Inject constructor(
     private val _messages = MutableStateFlow(listOf(welcomeMessage))
     val messages: StateFlow<List<Message>> = _messages
 
-    fun onSendClick(text: String) {
+    fun onSendClick(inputText: String) {
+        val text = inputText.trim()
         appendMessage(listOf(Message(text, true)))
         viewModelScope.launch {
             val messagesFromBot = sendText(text)
