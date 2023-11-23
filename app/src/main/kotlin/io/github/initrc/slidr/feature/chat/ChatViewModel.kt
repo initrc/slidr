@@ -1,23 +1,22 @@
 package io.github.initrc.slidr.feature.chat
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.github.initrc.slidr.feature.chat.data.ChatRepository
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class ChatViewModel @Inject constructor(
-    val chatRepository: ChatRepository,
+    private val chatRepository: ChatRepository,
 ): ViewModel() {
 
     private val welcomeMessage = Message("Hi, ask me about universities.", false)
-    private val _messages = MutableLiveData(listOf(welcomeMessage))
-    val messages: LiveData<List<Message>>
-        get() = _messages
+    private val _messages = MutableStateFlow(listOf(welcomeMessage))
+    val messages: StateFlow<List<Message>> = _messages
 
     fun onSendClick(text: String) {
         appendMessage(listOf(Message(text, true)))
@@ -28,9 +27,7 @@ class ChatViewModel @Inject constructor(
     }
 
     private fun appendMessage(messages: List<Message>) {
-        val newMessages = _messages.value?.toMutableList() ?: mutableListOf()
-        newMessages.addAll(messages)
-        _messages.value = newMessages
+        _messages.value = _messages.value.plus(messages)
     }
 
     private suspend fun sendText(text: String): List<Message> {

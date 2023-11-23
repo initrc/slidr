@@ -5,14 +5,14 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 
 @Composable
 fun ChatScreen(
     chatViewModel: ChatViewModel,
 ) {
-    val messages = chatViewModel.messages.observeAsState(listOf())
+    val messages = chatViewModel.messages.collectAsStateWithLifecycle()
     Surface {
         Column(modifier = Modifier.fillMaxSize()) {
             Conversation(
