@@ -53,6 +53,8 @@ android {
 
 dependencies {
 
+    implementation(project(":core"))
+
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.lifecycle:lifecycle-runtime-compose:2.6.2")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
@@ -67,10 +69,6 @@ dependencies {
     // dependency injection
     implementation("com.google.dagger:hilt-android:2.48.1")
     kapt("com.google.dagger:hilt-compiler:2.48.1")
-
-    // network
-    implementation("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
 
     // tests
     testImplementation("junit:junit:4.13.2")

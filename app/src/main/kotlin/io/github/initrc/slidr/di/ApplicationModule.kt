@@ -4,7 +4,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import io.github.initrc.slidr.feature.chat.data.ChatRepository
+import io.github.initrc.slidr.core.data.ChatRepository
 import javax.inject.Singleton
 
 @Module

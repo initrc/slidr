@@ -4,4 +4,5 @@ plugins {
     id("org.jetbrains.kotlin.android") version "1.9.20" apply false
     kotlin("kapt") version "1.9.20"
     id("com.google.dagger.hilt.android") version "2.48.1" apply false
+    id("com.android.library") version "8.1.2" apply false
 }

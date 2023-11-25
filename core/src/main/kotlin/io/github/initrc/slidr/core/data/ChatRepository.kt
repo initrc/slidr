@@ -1,4 +1,4 @@
-package io.github.initrc.slidr.feature.chat.data
+package io.github.initrc.slidr.core.data
 
 import com.google.gson.annotations.SerializedName
 import retrofit2.Retrofit

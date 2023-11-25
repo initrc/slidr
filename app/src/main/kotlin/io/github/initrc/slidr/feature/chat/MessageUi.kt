@@ -13,14 +13,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
-import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.paint
@@ -30,16 +28,8 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import io.github.initrc.slidr.R
+import io.github.initrc.slidr.core.model.Message
 import io.github.initrc.slidr.ui.theme.SlidrTheme
-import kotlin.random.Random
-
-
-data class Message(
-    val body: String,
-    val isFromMe: Boolean,
-    val id: String = Random.nextInt(0, 1_000_000).toString(),
-    val isLoading: Boolean = false
-)
 
 @Composable
 fun MessageCard(message: Message, modifier: Modifier) {
