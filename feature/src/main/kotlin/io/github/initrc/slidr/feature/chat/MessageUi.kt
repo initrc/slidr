@@ -14,6 +14,10 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.Face
+import androidx.compose.material.icons.rounded.ShoppingCart
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -21,15 +25,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.paint
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import io.github.initrc.slidr.R
 import io.github.initrc.slidr.core.model.Message
-import io.github.initrc.slidr.ui.theme.SlidrTheme
 
 @Composable
 fun MessageCard(message: Message, modifier: Modifier) {
@@ -40,15 +40,12 @@ fun MessageCard(message: Message, modifier: Modifier) {
             .padding(all = 8.dp)
     ) {
         if (!message.isFromMe) {
-            Image(
-                painter = painterResource(R.drawable.ic_launcher_foreground),
+            Icon(
+                Icons.Rounded.Face,
                 contentDescription = "contact profile picture",
                 modifier = Modifier
                     .size(40.dp)
-                    .clip(CircleShape)
-                    .paint(painter = painterResource(R.drawable.ic_launcher_background))
             )
-
             Spacer(modifier = Modifier.width(8.dp))
         }
 
@@ -102,7 +99,7 @@ fun MessageCard(message: Message, modifier: Modifier) {
     showBackground = true
 )
 @Composable
-fun PreviewMessageCard() = SlidrTheme {
+fun PreviewMessageCard() = MaterialTheme {
     Surface {
         MessageCard(
             message = Message("Sunny", false),

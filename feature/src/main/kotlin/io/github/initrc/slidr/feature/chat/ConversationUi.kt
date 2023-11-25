@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
@@ -14,7 +15,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import io.github.initrc.slidr.core.data.SampleData
 import io.github.initrc.slidr.core.model.Message
-import io.github.initrc.slidr.ui.theme.SlidrTheme
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -42,7 +42,7 @@ fun Conversation(messages: State<List<Message>>, modifier: Modifier) {
 @Preview
 @Composable
 fun PreviewConversation() {
-    SlidrTheme {
+    MaterialTheme{
         Conversation(
             remember { mutableStateOf(SampleData.chatbotConversation) },
             Modifier)
