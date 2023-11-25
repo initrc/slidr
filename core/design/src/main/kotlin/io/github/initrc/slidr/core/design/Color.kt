@@ -1,4 +1,4 @@
-package io.github.initrc.slidr.ui.theme
+package io.github.initrc.slidr.core.design
 
 import androidx.compose.ui.graphics.Color
 

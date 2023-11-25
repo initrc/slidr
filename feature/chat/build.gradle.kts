@@ -7,7 +7,7 @@ plugins {
 }
 
 android {
-    namespace = "io.github.initrc.slidr.feature"
+    namespace = "io.github.initrc.slidr.feature.chat"
     compileSdk = 34
 
     defaultConfig {
@@ -43,6 +43,7 @@ android {
 dependencies {
 
     implementation(project(":core:data"))
+    implementation(project(":core:design"))
     implementation(project(":core:model"))
 
     // android

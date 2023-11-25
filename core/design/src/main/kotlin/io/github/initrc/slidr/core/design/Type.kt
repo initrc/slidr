@@ -1,4 +1,4 @@
-package io.github.initrc.slidr.ui.theme
+package io.github.initrc.slidr.core.design
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

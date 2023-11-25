@@ -5,7 +5,8 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import dagger.hilt.android.AndroidEntryPoint
-import io.github.initrc.slidr.ui.theme.SlidrTheme
+import io.github.initrc.slidr.core.design.SlidrTheme
+import io.github.initrc.slidr.feature.chat.ChatScreen
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -16,7 +17,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             SlidrTheme {
-                io.github.initrc.slidr.feature.chat.ChatScreen(chatViewModel)
+                ChatScreen(chatViewModel)
             }
         }
     }
