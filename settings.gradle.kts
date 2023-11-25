@@ -17,3 +17,4 @@ rootProject.name = "Slidr"
 include(":app")
 include(":core")
 include(":feature")
+include(":feature:chat")
