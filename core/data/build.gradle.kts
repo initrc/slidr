@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "io.github.initrc.slidr.core"
+    namespace = "io.github.initrc.slidr.core.data"
     compileSdk = 34
 
     defaultConfig {
@@ -32,6 +32,8 @@ android {
 }
 
 dependencies {
+
+    implementation(project(":core:model"))
 
     // network
     implementation("com.squareup.retrofit2:retrofit:2.9.0")

@@ -42,7 +42,8 @@ android {
 
 dependencies {
 
-    implementation(project(":core"))
+    implementation(project(":core:data"))
+    implementation(project(":core:model"))
 
     // android
     implementation("androidx.core:core-ktx:1.12.0")
