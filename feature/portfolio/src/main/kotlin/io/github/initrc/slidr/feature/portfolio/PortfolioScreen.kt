@@ -43,6 +43,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.AsyncImage
@@ -53,7 +54,8 @@ import io.github.initrc.slidr.core.model.Portfolio
 
 @Composable
 fun PortfolioScreen(
-    portfolioViewModel: PortfolioViewModel,
+    portfolioViewModel: PortfolioViewModel = hiltViewModel(),
+    onChatClick: (String) -> Unit,
 ) {
     val uiState by portfolioViewModel.uiState.collectAsStateWithLifecycle()
     val isLoading = uiState is PortfolioUiState.Loading
@@ -69,9 +71,10 @@ fun PortfolioScreen(
                 CircularProgressIndicator()
             }
 
-            AnimatedVisibility(visible = isSuccess) {
+            if (isSuccess) {
                 PortfolioView(
                     portfolio = (uiState as PortfolioUiState.Success).portfolio,
+                    onChatClick = onChatClick,
                     modifier = Modifier.fillMaxSize(),
                 )
             }
@@ -82,6 +85,7 @@ fun PortfolioScreen(
 @Composable
 fun PortfolioView(
     portfolio: Portfolio,
+    onChatClick: (String) -> Unit,
     modifier: Modifier,
 ) {
     Column(modifier = modifier) {
@@ -133,7 +137,7 @@ fun PortfolioView(
         }
         ContactBar(
             portfolio = portfolio,
-            onClick = { /*TODO*/ },
+            onClick = { onChatClick(portfolio.id) },
             modifier = Modifier
                 .height(64.dp)
         )
@@ -254,6 +258,7 @@ fun PreviewPortfolioView() {
                     rating = 4.88,
                     cost = 199,
                 ),
+                onChatClick = {},
                 modifier = Modifier.fillMaxWidth()
             )
         }

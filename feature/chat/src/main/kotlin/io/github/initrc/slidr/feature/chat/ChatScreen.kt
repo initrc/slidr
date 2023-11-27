@@ -6,11 +6,12 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 
 @Composable
 fun ChatScreen(
-    chatViewModel: ChatViewModel,
+    chatViewModel: ChatViewModel = hiltViewModel(),
 ) {
     val messages = chatViewModel.messages.collectAsStateWithLifecycle()
     Surface {
