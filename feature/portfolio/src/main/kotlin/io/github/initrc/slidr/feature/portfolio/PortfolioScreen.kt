@@ -47,6 +47,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.AsyncImage
 import io.github.initrc.slidr.core.design.Black60
+import io.github.initrc.slidr.core.design.primaryLinearPainter
 import io.github.initrc.slidr.core.design.SlidrTheme
 import io.github.initrc.slidr.core.model.Portfolio
 
@@ -105,6 +106,7 @@ fun PortfolioView(
                 AsyncImage(
                     model = portfolio.avatarImageUrl,
                     contentDescription = "avatar",
+                    placeholder = primaryLinearPainter(),
                     modifier = Modifier
                         .padding(end = 16.dp)
                         .size(48.dp)
@@ -160,6 +162,7 @@ fun ImageSlider(
                     model = it,
                     contentDescription = null,
                     contentScale = ContentScale.Crop,
+                    placeholder = primaryLinearPainter(),
                     modifier = Modifier
                         .fillParentMaxWidth()
                 )
@@ -245,7 +248,7 @@ fun PreviewPortfolioView() {
                     id = "kyz",
                     name = "Yizheng Ke",
                     bio = "Digital painting in oil painting style #portrait #landscape",
-                    imageUrls = listOf(),
+                    imageUrls = listOf("", ""),
                     avatarImageUrl = "",
                     location = "Shanghai, China",
                     rating = 4.88,
