@@ -34,6 +34,9 @@ dependencies {
 
     implementation(project(":core:model"))
 
+    // coroutines
+    implementation(libs.kotlinx.coroutines)
+
     // network
     implementation(libs.retrofit)
     implementation(libs.retrofit.converter.gson)

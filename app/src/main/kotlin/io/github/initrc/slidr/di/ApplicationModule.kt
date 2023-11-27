@@ -5,6 +5,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import io.github.initrc.slidr.core.data.ChatRepository
+import io.github.initrc.slidr.core.data.PortfolioRepository
 import javax.inject.Singleton
 
 @Module
@@ -14,4 +15,8 @@ object ApplicationModule {
     @Provides
     @Singleton
     fun provideChatRepository() = ChatRepository()
+
+    @Provides
+    @Singleton
+    fun providePortfolioRepository() = PortfolioRepository()
 }

@@ -13,7 +13,7 @@ import javax.inject.Inject
 @HiltViewModel
 class ChatViewModel @Inject constructor(
     private val chatRepository: ChatRepository,
-): ViewModel() {
+) : ViewModel() {
 
     private val welcomeMessage = Message("Hi, ask me about universities.", false)
     private val _messages = MutableStateFlow(listOf(welcomeMessage))

@@ -1,25 +1,17 @@
 plugins {
-    alias(libs.plugins.android.application)
+    alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.hilt)
     kotlin("kapt")
 }
 
 android {
-    namespace = "io.github.initrc.slidr"
+    namespace = "io.github.initrc.slidr.feature.listing"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "io.github.initrc.slidr"
         minSdk = 24
-        targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        vectorDrawables {
-            useSupportLibrary = true
-        }
     }
 
     buildTypes {
@@ -44,22 +36,27 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.4"
     }
-    packaging {
-        resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
-        }
-    }
 }
 
 dependencies {
 
-    implementation(project(":feature:chat"))
-    implementation(project(":feature:portfolio"))
     implementation(project(":core:data"))
     implementation(project(":core:design"))
+    implementation(project(":core:model"))
+
+    // coil
+    implementation(libs.coil.compose)
 
     // compose
     implementation(libs.androidx.activity.compose)
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.compose.ui)
+    implementation(libs.androidx.compose.ui.graphics)
+    implementation(libs.androidx.compose.ui.tooling.preview)
+    implementation(libs.androidx.compose.material3)
+
+    // lifecycle
+    implementation(libs.androidx.lifecycle.runtime.compose)
 
     // dependency injection
     implementation(libs.hilt)
@@ -67,13 +64,7 @@ dependencies {
 
     // tests
     testImplementation(libs.junit)
-    testImplementation(libs.hilt.testing)
-    kaptTest(libs.hilt.compiler)
     androidTestImplementation(libs.androidx.test.junit)
-    androidTestImplementation(platform(libs.androidx.compose.bom))
-    androidTestImplementation(libs.androidx.compose.ui.test.junit4)
-    androidTestImplementation(libs.hilt.testing)
-    kaptAndroidTest(libs.hilt.compiler)
 
     // debug
     debugImplementation(libs.androidx.compose.ui.tooling)
