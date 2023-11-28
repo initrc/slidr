@@ -7,9 +7,6 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.State
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -20,7 +17,7 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun Conversation(messages: State<List<Message>>, modifier: Modifier) {
+fun Conversation(messages: List<Message>, modifier: Modifier) {
     val listState = rememberLazyListState()
     val coroutineScope = rememberCoroutineScope()
     LazyColumn(
@@ -29,13 +26,13 @@ fun Conversation(messages: State<List<Message>>, modifier: Modifier) {
         modifier = modifier
     ) {
         items(
-            items = messages.value,
+            items = messages,
             key = { it.id },
         ) { message ->
             MessageCard(message, Modifier.animateItemPlacement())
         }
         coroutineScope.launch {
-            listState.animateScrollToItem(index = messages.value.size - 1)
+            listState.animateScrollToItem(index = messages.size - 1)
         }
     }
 }
@@ -46,7 +43,7 @@ fun PreviewConversation() {
     SlidrTheme {
         Surface {
             Conversation(
-                remember { mutableStateOf(SampleData.chatbotConversation) },
+                SampleData.chatbotConversation,
                 Modifier)
         }
     }
