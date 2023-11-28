@@ -1,10 +1,12 @@
 package io.github.initrc.slidr.feature.chat
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.github.initrc.slidr.core.data.ChatRepository
 import io.github.initrc.slidr.core.model.Message
+import io.github.initrc.slidr.feature.chat.navigation.toChatArgs
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -12,10 +14,12 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ChatViewModel @Inject constructor(
+    savedStateHandle: SavedStateHandle,
     private val chatRepository: ChatRepository,
 ) : ViewModel() {
 
-    private val welcomeMessage = Message("Hi, ask me about universities.", false)
+    private val userId = savedStateHandle.toChatArgs().userId
+    private val welcomeMessage = Message("Hi, I'm ${userId}. Ask me about universities.", false)
     private val _messages = MutableStateFlow(listOf(welcomeMessage))
     val messages: StateFlow<List<Message>> = _messages
 
