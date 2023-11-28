@@ -14,6 +14,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -56,9 +57,9 @@ fun ImageSlider(
         }
 
         val imageCount = imageUrls.size
-        val currentImage = remember { derivedStateOf { state.firstVisibleItemIndex + 1 } }
+        val currentImage by remember { derivedStateOf { state.firstVisibleItemIndex + 1 } }
         Text(
-            text = "${currentImage.value}/$imageCount",
+            text = "$currentImage/$imageCount",
             color = Color.White,
             style = MaterialTheme.typography.bodySmall,
             modifier = Modifier
