@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="send_btn_content_description">send button</string>
+    <string name="user_avatar_content_description">user avatar</string>
+</resources>

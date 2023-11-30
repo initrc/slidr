@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="user_avatar_content_description">user avatar</string>
+    <string name="image_with_index_content_description">image %d</string>
+    <string name="location_content_description">location</string>
+</resources>

@@ -21,6 +21,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
@@ -39,9 +40,8 @@ fun MessageCard(message: Message, modifier: Modifier) {
         if (!message.isFromMe) {
             Icon(
                 Icons.Rounded.Face,
-                contentDescription = "contact profile picture",
-                modifier = Modifier
-                    .size(40.dp)
+                contentDescription = stringResource(R.string.user_avatar_content_description),
+                modifier = Modifier.size(40.dp)
             )
             Spacer(modifier = Modifier.width(8.dp))
         }
