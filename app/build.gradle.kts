@@ -9,6 +9,10 @@ android {
     namespace = "io.github.initrc.slidr"
     compileSdk = 34
 
+    buildFeatures {
+        buildConfig = true
+    }
+
     defaultConfig {
         applicationId = "io.github.initrc.slidr"
         minSdk = 24
@@ -24,11 +28,15 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            applicationIdSuffix = ".release"
+        }
+        debug {
+            applicationIdSuffix = ".debug"
         }
     }
     compileOptions {
@@ -57,6 +65,9 @@ dependencies {
     implementation(project(":feature:portfolio"))
     implementation(project(":core:data"))
     implementation(project(":core:design"))
+
+    // coil
+    implementation(libs.coil.kt)
 
     // compose
     implementation(libs.androidx.activity.compose)
