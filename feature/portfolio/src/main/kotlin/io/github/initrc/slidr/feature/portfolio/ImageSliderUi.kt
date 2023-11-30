@@ -2,11 +2,12 @@ package io.github.initrc.slidr.feature.portfolio
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.snapping.rememberSnapFlingBehavior
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.MaterialTheme
@@ -31,6 +32,7 @@ import io.github.initrc.slidr.core.design.primaryLinearPainter
 @Composable
 fun ImageSlider(
     imageUrls: List<String>,
+    onImageClick: (Int) -> Unit,
     modifier: Modifier,
 ) {
     val state = rememberLazyListState()
@@ -42,16 +44,19 @@ fun ImageSlider(
             state = state,
             flingBehavior = rememberSnapFlingBehavior(lazyListState = state),
         ) {
-            items(
+            itemsIndexed(
                 items = imageUrls,
-            ) {
+            ) { index, item ->
                 AsyncImage(
-                    model = it,
+                    model = item,
                     contentDescription = null,
                     contentScale = ContentScale.Crop,
                     placeholder = primaryLinearPainter(),
                     modifier = Modifier
                         .fillParentMaxWidth()
+                        .clickable {
+                            onImageClick(index)
+                        }
                 )
             }
         }
@@ -80,7 +85,11 @@ fun ImageSlider(
 fun PreviewImageSlider() {
     SlidrTheme {
         Surface {
-            ImageSlider(imageUrls = listOf("", "") , modifier = Modifier)
+            ImageSlider(
+                imageUrls = listOf("", ""),
+                onImageClick = {},
+                modifier = Modifier
+            )
         }
     }
 }

@@ -45,11 +45,13 @@ import io.github.initrc.slidr.core.model.Portfolio
 fun PortfolioScreen(
     portfolioViewModel: PortfolioViewModel = hiltViewModel(),
     onChatClick: (String) -> Unit,
+    onImageClick: (Int) -> Unit,
 ) {
     val uiState by portfolioViewModel.uiState.collectAsStateWithLifecycle()
     PortfolioScreen(
         uiState = uiState,
-        onChatClick = onChatClick
+        onChatClick = onChatClick,
+        onImageClick = onImageClick,
     )
 }
 
@@ -57,6 +59,7 @@ fun PortfolioScreen(
 fun PortfolioScreen(
     uiState: PortfolioUiState,
     onChatClick: (String) -> Unit,
+    onImageClick: (Int) -> Unit,
 ) {
     val isLoading = uiState is PortfolioUiState.Loading
     val isSuccess = uiState is PortfolioUiState.Success
@@ -75,6 +78,7 @@ fun PortfolioScreen(
                 PortfolioView(
                     portfolio = (uiState as PortfolioUiState.Success).portfolio,
                     onChatClick = onChatClick,
+                    onImageClick = onImageClick,
                     modifier = Modifier.fillMaxSize(),
                 )
             }
@@ -86,6 +90,7 @@ fun PortfolioScreen(
 fun PortfolioView(
     portfolio: Portfolio,
     onChatClick: (String) -> Unit,
+    onImageClick: (Int) -> Unit,
     modifier: Modifier,
 ) {
     Column(modifier = modifier) {
@@ -97,6 +102,7 @@ fun PortfolioView(
         ) {
             ImageSlider(
                 imageUrls = portfolio.imageUrls,
+                onImageClick = onImageClick,
                 modifier = Modifier.aspectRatio(0.8f) )
             Text(
                 text = portfolio.bio,
@@ -212,6 +218,7 @@ fun PreviewPortfolioView() {
                     cost = 199,
                 ),
                 onChatClick = {},
+                onImageClick = {},
                 modifier = Modifier.fillMaxWidth()
             )
         }

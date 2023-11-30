@@ -10,7 +10,10 @@ import io.github.initrc.slidr.feature.portfolio.PortfolioScreen
 private const val USER_ID = "userId"
 const val portfolioRoute = "portfolio/{$USER_ID}"
 
-fun NavGraphBuilder.portfolioScreen(onChatClick: (String) -> Unit) {
+fun NavGraphBuilder.portfolioScreen(
+    onChatClick: (String) -> Unit,
+    onImageClick: (Int) -> Unit,
+) {
     composable(
         route = portfolioRoute,
         arguments = listOf(
@@ -21,7 +24,8 @@ fun NavGraphBuilder.portfolioScreen(onChatClick: (String) -> Unit) {
         )
     ) {
         PortfolioScreen(
-            onChatClick = onChatClick
+            onChatClick = onChatClick,
+            onImageClick = onImageClick,
         )
     }
 }
