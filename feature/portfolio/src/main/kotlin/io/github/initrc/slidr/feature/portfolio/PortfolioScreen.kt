@@ -197,7 +197,7 @@ fun ContactBar(
             Button(
                 onClick = { onClick() },
             ) {
-                Text("Chat")
+                Text(stringResource(R.string.chat))
             }
         }
     }

@@ -68,7 +68,8 @@ dependencies {
 
     // tests
     testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.test.junit)
+    androidTestImplementation(libs.coil.test)
+    androidTestImplementation(libs.androidx.compose.ui.test.junit4)
 
     // debug
     debugImplementation(libs.androidx.compose.ui.tooling)
