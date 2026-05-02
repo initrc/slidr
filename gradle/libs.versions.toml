@@ -8,10 +8,10 @@ androidxLifecycle = "2.6.2"
 androidxNavigation = "2.7.5"
 androidxTestJunit = "1.1.5"
 coil = "2.5.0"
-gradlePlugin = "8.13.2"
-hilt = "2.48.1"
+gradlePlugin = "9.1.1"
+hilt = "2.57.2"
 junit = "4.13.2"
-kotlin = "1.9.20"
+kotlin = "2.2.10"
 kotlinxCoroutines = "1.7.3"
 retrofit = "2.9.0"
 
@@ -48,6 +48,7 @@ android-application = { id = "com.android.application", version.ref = "gradlePlu
 android-library = { id = "com.android.library", version.ref = "gradlePlugin" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
+kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 
 [bundles]
-

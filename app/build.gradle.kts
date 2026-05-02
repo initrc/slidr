@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.hilt)
     kotlin("kapt")
+    alias(libs.plugins.kotlin.compose)
 }
 
 android {
@@ -48,9 +49,6 @@ android {
     }
     buildFeatures {
         compose = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.4"
     }
     packaging {
         resources {
